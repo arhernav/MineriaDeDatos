@@ -1,1 +1,2 @@
 # Minado de datos - agrupación 
+
