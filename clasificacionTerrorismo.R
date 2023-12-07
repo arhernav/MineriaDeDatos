@@ -60,6 +60,12 @@ data.rpart
 #Visualización del arbol.
 rpart.plot(data.rpart,main = "data")
 
+#Realizamos una prueba de predicción del arbol
+supp <-subset(data, select=c("iyear", "targtype1", "targsubtype1") )
+supp
 
+new <- data.frame(targsubtype1=c(21), targtype1=c(2))
+print("Predicción de targsubtype = 21 y targtype = 2")
+predict(tre, newdata=new)
 
 ## Red neuronal
