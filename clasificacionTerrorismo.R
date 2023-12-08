@@ -68,7 +68,37 @@ new <- data.frame(targsubtype1=c(21), targtype1=c(2))
 print("Predicción de targsubtype = 21 y targtype = 2")
 predict(tre, newdata=new)
 
-## Red neuronal
+##Realizamos un segundo arbol para ir a la par de la red neuronal
+qplot(crit3,doubtterr, data = data,colour = doubtterr, size = I(4))
+
+#Visualizar columnas del dataset.
+attach(data)
+#Creación del arbol
+tre<- tree(crit3 ~  doubtterr, data = data)
+#Resumen del arbol.
+summary(tre)
+#Representación del arbol.
+plot(tre)
+text(tre)
+
+# Creamos el diagrama de dispersión
+
+graf <- qplot(crit3,doubtterr, data = data,colour = doubtterr, size = I(4))
+graf
+#Graficas correspondientes a las particiones creadas.
+graf + geom_vline(aes(xintercept = 0.5))
+
+tre
+#Arbol con rpart
+data.rpart <- rpart(crit3 ~ doubtterr,data = data)
+data.rpart
+
+#Visualización del arbol.
+rpart.plot(data.rpart,main = "data")
+
+
+
+##### Red neuronal
 data <- read.csv("~/Documents/Mining/afgData.csv")
 data$crit3 <- as.factor(data$crit3)
 library(caTools)
